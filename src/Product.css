@@ -17,6 +17,7 @@
     max-width: 200px;
     width: 100%;
     object-fit: contain;
+    height: 100%;
     margin-bottom: 15px;
 }  
 
@@ -37,4 +38,7 @@
 
 .product__price {
     margin-top: 5px;
+}
+.product__rating{
+    display: flex;
 }
