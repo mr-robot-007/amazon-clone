@@ -8,7 +8,6 @@ import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "./reducer";
 import axios from "./axios";
 import { db } from "./firebase";
-import { doc, setDoc } from "firebase/firestore"; 
 
 function Payment() {
   const [{ basket, user }, dispatch] = useStateValue();
@@ -23,13 +22,18 @@ function Payment() {
 
   useEffect(() => {
     // generate the special stripe secret which allows us to charge a customer
+    // if(getBasketTotal(total)==0) {
+    //   navigate('/home')
+    // }
     const getClientSecret = async () => {
-      const response = await axios({
-        method: "post",
-        // Stripe expects the total in a currencies subunits
-        url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
-      });
-      setClientSecret(response.data.clientSecret);
+      if (basket.length > 0) {
+        const response = await axios({
+          method: "post",
+          // Stripe expects the total in a currencies subunits
+          url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
+        });
+        setClientSecret(response.data.clientSecret);
+      }
     };
 
     getClientSecret();
@@ -53,24 +57,23 @@ function Payment() {
       .then(({ paymentIntent }) => {
         // paymentIntent = payment confirmation
 
-        db
-          .collection('users')
-          .doc(user?user.uid:null)
-          .collection('orders')
+        db.collection("users")
+          .doc(user ? user.uid : null)
+          .collection("orders")
           .doc(paymentIntent.id)
           .set({
-              basket: basket,
-              amount: paymentIntent.amount,
-              created: paymentIntent.created
-          })
+            basket: basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+          });
 
         setSucceeded(true);
-        setError(null)
-        setProcessing(false)
+        setError(null);
+        setProcessing(false);
 
         dispatch({
-            type: 'EMPTY_BASKET'
-        })
+          type: "EMPTY_BASKET",
+        });
 
         // console.log("hurrya");
         navigate("/orders", { replace: true });
@@ -138,7 +141,7 @@ function Payment() {
                   thousandSeparator={true}
                   prefix={"$"}
                 />
-                <button disabled={processing || disabled || succeeded}>
+                <button disabled={(processing || disabled || succeeded || basket.length == 0)?true :false}>
                   <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                 </button>
               </div>
