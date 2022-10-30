@@ -16,30 +16,35 @@ const reducer = (state, action) => {
         ...state,
         basket: [...state.basket, action.item],
       };
-    case "REMOVE_FROM_BASKET":
+    case "EMPTY_BASKET":
+      return {
+        ...state,
+        basket:[],
+      };
 
-    //find the first index of the item of item in list that matches the id of the action and return it in index
+    case "REMOVE_FROM_BASKET":
+      //find the first index of the item of item in list that matches the id of the action and return it in index
       const index = state.basket.findIndex(
         (basketItem) => basketItem.id === action.id
       );
-      let newBasket =[...state.basket];
+      let newBasket = [...state.basket];
       //if(i >=0 means that item is is basket, else we it doesn't exist in the basket)
-      if(index>=0) {
-        newBasket.splice(index, 1);   //it removes 1 item from that index
-      } else{
+      if (index >= 0) {
+        newBasket.splice(index, 1); //it removes 1 item from that index
+      } else {
         console.warn(
           `Can't remove product (id: ${action.id}) as its not in cart!`
-        )
+        );
       }
-      return  {
+      return {
         ...state,
-        basket: newBasket
-      }
+        basket: newBasket,
+      };
     case "SET_USER":
       return {
         ...state,
-        user: action.user
-      }
+        user: action.user,
+      };
 
     default:
       return state;
