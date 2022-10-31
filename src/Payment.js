@@ -39,7 +39,7 @@ function Payment() {
     getClientSecret();
   }, [basket]);
 
-  console.log("THE SECRET IS >>>", clientSecret);
+  // console.log("THE SECRET IS >>>", clientSecret);
 
   const handleSubmit = async (event) => {
     // do all stripe stuff

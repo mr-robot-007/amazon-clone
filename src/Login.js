@@ -15,7 +15,7 @@ function Login() {
       // console.log("res >>> ",res)
       navigate("/");
     } catch (err) {
-      console.log(err)
+      // console.log(err)
       alert("Sign In Failed! Please Try Again.");
     }
   };
@@ -38,7 +38,7 @@ function Login() {
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
         //auth in this line is the name of the object that is recieved back
-        console.log(auth);
+        // console.log(auth);
         if (auth) {
           navigate("/");
         }

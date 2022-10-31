@@ -12,7 +12,7 @@ function Header() {
   const handleAuthenticaton = () => {
     // console.log("clicked")
     if (user) {
-      auth.signOut().then(console.log("hahahahahahah"));
+      auth.signOut();
     }
   };
   return (
