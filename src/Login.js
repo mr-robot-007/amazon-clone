@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "./firebase";
+import { auth , signInWithPopup, GoogleAuthProvider } from "./firebase";
 import "./Login.css";
+
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const googleProvider = new GoogleAuthProvider();
+  
+  const signInWithGoogle = async () => {
+    try {
+      const res = await signInWithPopup(auth, googleProvider);
+      // console.log("res >>> ",res)
+      navigate("/");
+    } catch (err) {
+      console.log(err)
+      alert("Sign In Failed! Please Try Again.");
+    }
+  };
   const signIn = (e) => {
     e.preventDefault(); //prevents page from reloading
 
@@ -15,6 +28,7 @@ function Login() {
         navigate("/");
       })
       .catch((error) => alert(error.message));
+      
   };
 
   const register = (e) => {
@@ -30,6 +44,7 @@ function Login() {
         }
       })
       .catch((error) => alert(error.message));
+      
 
     //do some fancy firebase register
   };
@@ -43,7 +58,7 @@ function Login() {
       </Link>
       <div className="login__container">
         <h1>Sign In</h1>
-        <form>
+        <div className="login__form">
           <h5>Email</h5>
           <input
             type="text"
@@ -64,7 +79,10 @@ function Login() {
           >
             Sign In
           </button>
-        </form>
+          <button className="login__signInButton" onClick={signInWithGoogle}>
+            Login With Google
+          </button>
+        </div>
         <p>
           By signing-in you agree to Amazon's conditons of Use & Sale. Please
           see our Privacy Notice, our Cookies Notice and our Interest-Based Ads

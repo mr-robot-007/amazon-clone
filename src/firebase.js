@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
+import {getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAJprcbXNspxhBxDXAP_GKi7N-lV9ysP1Q",
@@ -18,4 +19,5 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 const auth = firebase.auth();
 
-export { db, auth };
+
+export { db, auth , signInWithPopup, getAuth,GoogleAuthProvider};
