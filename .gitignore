@@ -7,23 +7,10 @@
 # testing
 /coverage
 
-#apis
-/src/firebase.js
-/src/axios.js
-
-
-#backend
-/functions
-
 # production
 /build
 
-#firebase
-/.firebase
-.firebasesrc
-
 # misc
-/.firebase
 .firebasesrc
 .DS_Store
 .env.local
