@@ -1,25 +1,25 @@
 # [amazon-clone app](https://clone-d8d62.web.app/)
 This project build for learning purpose only and originally this project was built by Clever Programmer. \
-If you try to open project on chrome or safari broweser, it shows website is unsafe because browser can detect that it's not the original website and fake websites was mostly using phishing attacks. \
+If you try to open project on chrome or safari broweser, it shows website is unsafe because browsers can detect that it's not the original website and fake websites are mostly using phishing attacks. \
 Just click on Details and then click visit is unsafe site.
 
 ## About Project
-For front-end react was used.\
-For hosting, database, and backend deployment firebase was used.\
-Firebase firestore(real-time) database is used to store all data .\
-Backend was created using firebase cloud functions and nodejs was used to create it.\
-For Payment processing , stripe is used that provides payment gateway for they project.\
+- Front-end - ReactJS
+- Hosting, database, and backend deployment - Firebase
+- Database - Firebase firestore(real-time) database
+- Backend - firebase cloud functions + Nodejs
+- Payment Processing - Stripe
 
 ## Functionalities in the project 
-You can sign up and login using your account as well as login with google account.\
-You can add items to the cart.\
-You can go to cart, from their you can remove the items you wish to remove and also go for checkout.\
-When  you go to checkout page, stripe api is used that generated a payment for order total and returns with it and asks for card details.\
-Address for order is hard coded for now, you need to add credit card details to checkout.\
-In card details just keep entering 42424242424242....... in all three fields.\
-Then click on buy now.\
-After successful buy, you will be redirected to orders page and your order will appear on the top. \
-As stripe developer api was used  , so it doesn't ask for otp for payment it complete the transaction and return the payment id to react.\
+- You can sign up and login using your account as well as login with google account
+- You can add items to the cart
+- You can go to cart, from their you can remove the items you wish to remove and also go for checkout
+- When  you go to checkout page, stripe api is used that generated a payment for order total and returns with it and asks for card details
+- Address for order is hard coded for now, you need to add credit card details to checkout
+- In card details just keep entering 42424242424242....... in all three fields
+- Then click on buy now.
+- After successful buy, you will be redirected to orders page and your order will appear on the top
+- As stripe developer api was used  , so it doesn't ask for otp for payment it complete the transaction and return the payment id to react
 
 
 
